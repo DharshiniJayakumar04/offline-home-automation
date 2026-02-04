@@ -1,32 +1,59 @@
-# Parameter identification through Physics-Informed Neural Networks
+# Offline Smart Home
 
-## Overview
-This project implements Physics-Informed Neural Networks (PINNs) to predict ship maneuvering motion by integrating physical laws with deep learning. The model leverages the Nomoto ship maneuvering equation to ensure physically consistent motion prediction.
+An offline voice-controlled smart home assistant that supports Tamil–English mixed commands without using the internet. The system focuses on privacy, low latency, and local speech processing by combining deep learning and lightweight offline speech recognition.
 
-## Problem Statement
-Accurate ship maneuvering prediction is essential for maritime safety, navigation control, and autonomous vessel systems. Purely data-driven models may violate physical constraints, leading to unrealistic trajectories. This project addresses this limitation by embedding governing physics into the learning process.
+## Features
+- Fully offline voice recognition
+- Tamil + English code-mixed command support
+- Hybrid CRNN and PocketSphinx architecture
+- Low-latency command execution
+- No cloud services or internet dependency
+- Privacy-preserving local processing
 
-## Mathematical Modeling
-- Utilizes the first-order Nomoto maneuvering model
-- Represents ship yaw rate dynamics as a differential equation
-- Physics constraints are incorporated directly into the loss function
+## System Architecture
+Microphone Input  
+→ Speech Recognition (CRNN + PocketSphinx)  
+→ Intent Matching (Command Corpus)  
+→ Action Execution (Home Automation Simulation)
 
-## Methodology
-- Formulated ship maneuvering dynamics using the Nomoto equation
-- Designed a Physics-Informed Neural Network architecture
-- Integrated data loss and physics-based residual loss
-- Simulated vessel behavior under varying rudder angles
-- Evaluated model performance against physical consistency
+## Technologies Used
+- Python 3.10
+- TensorFlow
+- PocketSphinx
+- SpeechRecognition
+- pyttsx3
 
-## Results
-- Achieved stable and physically consistent ship motion predictions
-- Improved generalization under unseen maneuvering conditions
-- Demonstrated effectiveness of PINNs over traditional neural networks
-  
-## Applications
-- Maritime safety and collision avoidance
-- Autonomous ship navigation
-- Marine traffic simulation and control
+## Speech Recognition Method
+### CRNN
+- Uses MFCC features from speech audio
+- CNN layers extract spatial features
+- LSTM layers capture temporal patterns
+- Trained on a Tamil–English speech subset
 
-## Tech Stack
-Python, NumPy, TensorFlow, Physics-Informed Neural Networks (PINNs)
+### PocketSphinx
+- Lightweight offline speech recognition engine
+- Custom grammar (.gram) and dictionary (.dict)
+- Fast recognition for predefined commands
+
+## Example Commands
+- vilakku on pannu
+- fan off
+- light off pannu
+- switch on motor
+
+## Performance
+PocketSphinx provides fast responses (~0.5s) for common commands.  
+CRNN provides higher accuracy (~1.8s) for complex or unclear inputs.
+
+## Privacy
+- No internet connection required
+- No cloud storage
+- All audio processing is local
+
+## Future Scope
+- Real IoT device integration
+- Additional language support
+- Expanded command corpus
+- Improved noise handling
+
+
